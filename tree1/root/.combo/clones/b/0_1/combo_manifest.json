@@ -1,0 +1,16 @@
+{
+    "name": "B",
+    "dependencies": [
+        {
+            "name": "A",
+            "version": "0.2"
+        },
+        {
+            "name": "E",
+            "version": "0.1"
+        }
+    ],
+    "is_executable": 0,
+
+    "manifest_format_version": 1
+}

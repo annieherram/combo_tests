@@ -1,0 +1,21 @@
+{
+    "name": "My Root",
+    "dependencies": [
+        {
+            "name": "D",
+            "version": "1.0"
+        },
+        {
+            "name": "A",
+            "version": "0.1"
+        },
+        {
+            "name": "B",
+            "version": "0.1"
+        }
+    ],
+    "output_directory": "contrib",
+    "is_executable": 1,
+
+    "manifest_format_version": 1
+}

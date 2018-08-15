@@ -1,9 +1,9 @@
 {
-    "name": "E",
+    "name": "C",
     "dependencies": [
         {
-            "name": "C",
-            "version": "1.0"
+            "name": "B",
+            "version": "0.1"
         }
     ],
     "is_executable": 0,

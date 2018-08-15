@@ -1,2 +1,5 @@
 *.pyc
 .idea/
+.combo/
+contrib/
+local_sources.json

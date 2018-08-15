@@ -1,0 +1,25 @@
+{
+    "imports":
+    [
+        {
+            "name": "A",
+            "version": "0.2"
+        },
+        {
+            "name": "B",
+            "version": "0.1"
+        },
+        {
+            "name": "C",
+            "version": "1.0"
+        },
+        {
+            "name": "D",
+            "version": "1.1"
+        },
+        {
+            "name": "E",
+            "version": "0.1"
+        }
+    ]
+}

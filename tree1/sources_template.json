@@ -1,0 +1,69 @@
+{
+    "A":
+    {
+        "general_type": "version_dependent",
+        "0.1":
+        {
+            "type": "local_path",
+            "path": ".../a1"
+        },
+        "0.2":
+        {
+            "type": "local_path",
+            "path": ".../a2"
+        },
+        "1.0":
+        {
+            "type": "local_path",
+            "path": ".../a2"
+        }
+    },
+    "B":
+    {
+        "general_type": "version_dependent",
+        "0.1":
+        {
+            "type": "local_path",
+            "path": ".../b1"
+        }
+    },
+    "C": {
+        "general_type": "version_dependent",
+        "1.0": {
+            "type": "local_path",
+            "path": ".../c1"
+        },
+        "1.1": {
+            "type": "local_path",
+            "path": ".../c2"
+        }
+    },
+    "D":
+    {
+        "general_type": "version_dependent",
+        "0.1":
+        {
+            "type": "local_path",
+            "path": ".../d0-1"
+        },
+        "1.0":
+        {
+            "type": "local_path",
+            "path": ".../d1-0"
+        },
+        "1.1":
+        {
+            "type": "local_path",
+            "path": ".../d1-1"
+        }
+    },
+    "E":
+    {
+        "general_type": "version_dependent",
+        "0.1":
+        {
+            "type": "local_path",
+            "path": ".../e1"
+        }
+    }
+}

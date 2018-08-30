@@ -1,8 +1,9 @@
 import sys
-sys.path.append('C:/Combo/combo')
 import os
 import json
+import subprocess
 
+sys.path.append('C:/Combo/combo')
 from dependencies_manager import DependenciesManager
 from combo_general import ComboException
 from source_locator_server import get_version_source
@@ -33,6 +34,7 @@ def confirm_dependency_version(manager, expected_dependency, sources_file):
     expected_import_path = manager.get_dependency_path(expected_dependency['name'])
 
     if not os.path.exists(expected_import_path):
+        print(expected_import_path)
         raise BaseException()
 
     import_src_path = get_version_source(expected_dependency['name'], expected_dependency['version'], sources_file)
@@ -43,22 +45,27 @@ def confirm_dependency_version(manager, expected_dependency, sources_file):
 def run_test(root_dir, sources_file, expected_result):
     expected_error = expected_result.get('error')
 
-    try:
-        manager = DependenciesManager(root_dir, sources_file)
-        manager.resolve()
+    run_command = ['python', 'C:/Combo/combo/combo.py', root_dir, sources_file]
+    p = subprocess.Popen(run_command, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    stdout, stderr = p.communicate()
+    print(stdout)
 
+    if stderr:
+        line = str(stderr).split('\\r\\n')[-2]
+        exception_name = line.split(':')[0].split('.')[-1]
+
+        if not expected_error or exception_name != expected_error:
+            raise RuntimeError('Unexpected error was raised. Expected {}, got {}'
+                               .format(expected_error, exception_name), stderr)
+    else:
         if expected_error:
             raise RuntimeError('Error {} was expected, but did not occur'.format(expected_error))
 
         expected_dependencies = expected_result['imports']
+        manager = DependenciesManager(root_dir, sources_file)
 
-    except ComboException as e:
-        if type(e).__name__ != expected_error:
-            raise e
-        return
-
-    for expected_dependency in expected_dependencies:
-        confirm_dependency_version(manager, expected_dependency, sources_file)
+        for expected_dependency in expected_dependencies:
+            confirm_dependency_version(manager, expected_dependency, sources_file)
 
 
 def main():

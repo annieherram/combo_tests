@@ -1,0 +1,30 @@
+{
+    "A":
+    {
+        "general_type": "version_dependent",
+        "0.1":
+        {
+            "type": "local_path",
+            "path": ".../a1"
+        },
+        "0.2":
+        {
+            "type": "local_path",
+            "path": ".../a2"
+        }
+    },
+    "B":
+    {
+        "general_type": "version_dependent",
+        "0.1":
+        {
+            "type": "local_path",
+            "path": ".../b1"
+        },
+        "0.2":
+        {
+            "type": "local_path",
+            "path": ".../b2"
+        }
+    }
+}

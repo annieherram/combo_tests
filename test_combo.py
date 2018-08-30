@@ -1,17 +1,20 @@
 import sys
-sys.path.append('C:/Combo/combo')
 import os
 import json
 
+sys.path.append('C:/Combo/combo')
 from dependencies_manager import DependenciesManager
 from combo_general import ComboException
 from source_locator_server import get_version_source
+import utils
 
 
 ROOT_DIR_NAME = 'root'
 SOURCES_TEMPLATE_FILE_NAME = 'sources_template.json'
 SOURCES_FILE_NAME = 'local_sources.json'
 EXPECTATION_FILE_NAME = 'expected.json'
+
+EXCLUDED_TESTS = ['unclear_circle']
 
 
 def normalize_sources_json(sub_dir, in_file_name, out_file_name):
@@ -44,6 +47,7 @@ def run_test(root_dir, sources_file, expected_result):
     expected_error = expected_result.get('error')
 
     try:
+        utils.rmtree(os.path.join(root_dir, '.combo'))
         manager = DependenciesManager(root_dir, sources_file)
         manager.resolve()
 
@@ -74,17 +78,20 @@ def main():
     test_sub_dirs = [name for name in os.listdir(my_dir) if is_test_case_dir(name)]
 
     for sub_directory in test_sub_dirs:
-        print('Testing directory "{}"...'.format(sub_directory))
+        if sub_directory in EXCLUDED_TESTS:
+            print('Skipping excluded directory "{}"'.format(sub_directory))
+        else:
+            print('Testing directory "{}"...'.format(sub_directory))
 
-        with open(os.path.join(sub_directory, EXPECTATION_FILE_NAME), 'r') as expected_file:
-            expected_values = json.load(expected_file)
+            with open(os.path.join(sub_directory, EXPECTATION_FILE_NAME), 'r') as expected_file:
+                expected_values = json.load(expected_file)
 
-        normalize_sources_json(sub_directory, SOURCES_TEMPLATE_FILE_NAME, SOURCES_FILE_NAME)
+            normalize_sources_json(sub_directory, SOURCES_TEMPLATE_FILE_NAME, SOURCES_FILE_NAME)
 
-        sources_file = os.path.join(sub_directory, SOURCES_FILE_NAME)
-        root_dir = os.path.join(sub_directory, ROOT_DIR_NAME)
+            sources_file = os.path.join(sub_directory, SOURCES_FILE_NAME)
+            root_dir = os.path.join(sub_directory, ROOT_DIR_NAME)
 
-        run_test(root_dir, sources_file, expected_values)
+            run_test(root_dir, sources_file, expected_values)
 
 
 if __name__ == '__main__':

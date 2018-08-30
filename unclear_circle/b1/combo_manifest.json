@@ -1,0 +1,9 @@
+{
+    "name": "B",
+    "version": "0.1",
+    "dependencies": [
+    ],
+    "is_executable": 0,
+
+    "manifest_format_version": 1
+}

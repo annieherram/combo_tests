@@ -1,8 +1,7 @@
 {
+    "manifest_format_version": 1,
+    "version": "0.2",
     "name": "A",
     "dependencies": [
-    ],
-    "is_executable": 0,
-
-    "manifest_format_version": 1
+    ]
 }

@@ -4,9 +4,7 @@ import json
 
 sys.path.append('C:/Combo/combo')
 from dependencies_manager import DependenciesManager
-from combo_general import ComboException
-from source_locator_server import get_version_source
-import utils
+from combo_core import *
 
 
 ROOT_DIR_NAME = 'root'
@@ -38,9 +36,10 @@ def confirm_dependency_version(manager, expected_dependency, sources_file):
     if not os.path.exists(expected_import_path):
         raise BaseException()
 
-    import_src_path = get_version_source(expected_dependency['name'], expected_dependency['version'], sources_file)
-    if not cmptree(expected_import_path, import_src_path):
-        raise BaseException()
+    # TODO: Since soon each leaf will also have manifest, including version number, this won't be neccessary
+    # import_src_path = get_version_source(expected_dependency['name'], expected_dependency['version'], sources_file)
+    # if not cmptree(expected_import_path, import_src_path):
+    #     raise BaseException()
 
 
 def run_test(root_dir, sources_file, expected_result):

@@ -1,5 +1,7 @@
 {
+    "manifest_format_version": 1,
     "name": "My Root",
+    "version": "1.0",
     "dependencies": [
         {
             "name": "D",
@@ -14,8 +16,5 @@
             "version": "0.1"
         }
     ],
-    "output_directory": "contrib",
-    "is_executable": 1,
-
-    "manifest_format_version": 1
+    "output_directory": "contrib"
 }
